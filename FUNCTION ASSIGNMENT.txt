@@ -1,0 +1,142 @@
+    FUNCTION ASSIGNMENT
+1.)
+Certainly! Here's an example of an arrow function called `square` that takes a number as an argument and returns its square:
+
+```javascript
+const square = (num) => {
+  return num * num;
+};
+
+// Example usage
+const numberToSquare = 5;
+const result = square(numberToSquare);
+
+console.log(`The square of ${numberToSquare} is: ${result}`);
+```
+
+This code defines an arrow function `square`, which is then used to calculate the square of the `numberToSquare` variable. The result is displayed using `console.log()`.
+
+2.)
+Certainly! Here's an example of a JavaScript function called `generateGreeting` that takes a `name` as an argument and returns a personalized greeting message. The function is then used to greet three different people:
+
+```javascript
+function generateGreeting(name) {
+  return `Hello, ${name}! Welcome to our website.`;
+}
+
+// Greet three different people
+const person1 = "Alice";
+const person2 = "Bob";
+const person3 = "Charlie";
+
+console.log(generateGreeting(person1));
+console.log(generateGreeting(person2));
+console.log(generateGreeting(person3));
+```
+
+In this example, the `generateGreeting` function takes a `name` parameter and returns a greeting message using template literals. The function is then called three times with different names (`person1`, `person2`, and `person3`), and the resulting personalized greeting messages are displayed using `console.log()`.
+
+3.)
+Certainly! Here's an example of an IIFE (Immediately Invoked Function Expression) that calculates the square of a number and immediately displays the result:
+
+```javascript
+(function(number) {
+  const square = number * number;
+  console.log(`The square of ${number} is: ${square}`);
+})(5); // Replace 5 with the desired number
+```
+
+In this example, the function is defined and invoked immediately with the number `5`. The result is calculated inside the IIFE, and the square of the number is immediately displayed using `console.log()`. You can replace `5` with any other number as needed.
+
+4.)
+Certainly! Here's an example of a JavaScript function called `calculateTax` that takes an income as an argument and returns the amount of tax to be paid. The function uses a closure to handle different tax rates based on income ranges:
+
+```javascript
+function calculateTax() {
+  // Tax rates based on income ranges
+  const taxRates = [
+    { range: 10000, rate: 0.1 },
+    { range: 30000, rate: 0.15 },
+    { range: 70000, rate: 0.2 },
+    { range: Infinity, rate: 0.25 }
+  ];
+
+  // Closure: Inner function with access to the taxRates variable
+  return function(income) {
+    let tax = 0;
+
+    // Calculate tax based on income ranges
+    for (const { range, rate } of taxRates) {
+      if (income <= range) {
+        tax += income * rate;
+        break;
+      } else {
+        tax += range * rate;
+        income -= range;
+      }
+    }
+
+    return tax;
+  };
+}
+
+// Test the function with various incomes
+const calculateTaxForIncome = calculateTax();
+
+console.log(`Tax for $5,000 income: $${calculateTaxForIncome(5000)}`);
+console.log(`Tax for $20,000 income: $${calculateTaxForIncome(20000)}`);
+console.log(`Tax for $50,000 income: $${calculateTaxForIncome(50000)}`);
+console.log(`Tax for $100,000 income: $${calculateTaxForIncome(100000)}`);
+```
+
+This example defines a `calculateTax` function that returns an inner function. The inner function, which is the closure, has access to the `taxRates` variable. It calculates the tax based on the provided income and the specified tax rates. The function is then invoked with different income values for testing.
+
+5.)
+Certainly! Here's an example of a JavaScript function called `factorial` that calculates the factorial of a non-negative integer using recursion:
+
+```javascript
+function factorial(n) {
+  if (n === 0 || n === 1) {
+    return 1;
+  } else {
+    return n * factorial(n - 1);
+  }
+}
+
+// Test the function with different inputs
+console.log(`Factorial of 0: ${factorial(0)}`);
+console.log(`Factorial of 1: ${factorial(1)}`);
+console.log(`Factorial of 5: ${factorial(5)}`);
+console.log(`Factorial of 10: ${factorial(10)}`);
+```
+
+In this example, the `factorial` function is defined using recursion. The base case is when `n` is 0 or 1, in which case the function returns 1. Otherwise, it recursively calls itself with the argument `n - 1`. The function is then tested with different inputs using `console.log()`.
+
+6.)
+Certainly! Here's an example of a JavaScript function called `curry` that takes a function as an argument and returns a curried version of that function:
+
+```javascript
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn(...args);
+    } else {
+      return function(...moreArgs) {
+        return curried(...args, ...moreArgs);
+      };
+    }
+  };
+}
+
+// Test the curry function with a function that adds two numbers
+const add = (a, b) => a + b;
+const curriedAdd = curry(add);
+
+console.log(curriedAdd(2)(3)); // Outputs 5
+console.log(curriedAdd(5, 7)); // Outputs 12
+console.log(curriedAdd(2)(3)(4)); // Outputs 9
+```
+
+In this example, the `curry` function takes another function (`fn`) as an argument and returns a curried version of it. The curried function accepts arguments one at a time and returns a new function until all arguments are provided. When all arguments are provided, it executes the original function (`fn`) with those arguments.
+
+The `curry` function is then tested with a simple `add` function to demonstrate its usage. You can see that the `curriedAdd` function can be called with arguments one at a time or all at once.
